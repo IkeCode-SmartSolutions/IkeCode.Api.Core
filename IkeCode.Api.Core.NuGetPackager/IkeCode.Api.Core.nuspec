@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>IkeCode.Api.Core</id>
-    <version>1.0.0.2</version>
+    <version>1.0.0.4</version>
     <title>IkeCode.Api.Core</title>
     <authors>Leandro Barral</authors>
     <owners>IkeCode</owners>

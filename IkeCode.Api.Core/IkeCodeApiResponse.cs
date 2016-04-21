@@ -7,16 +7,23 @@ namespace IkeCode.Api.Core
         public TResult Content { get; private set; }
         public string Status { get; private set; }
         public string Message { get; private set; }
+        public string InnerExceptionMessage { get; private set; }
 
-        public IkeCodeApiResponse(string status)
+        private IkeCodeApiResponse(string status)
         {
             Status = status;
         }
 
-        public IkeCodeApiResponse(string status, string message)
+        public IkeCodeApiResponse(string status, Exception ex)
             : this(status)
         {
-            Message = message;
+            Message = ex.Message;
+            InnerExceptionMessage = ex.InnerException != null ? ex.InnerException.Message : null;
+        }
+        
+        public IkeCodeApiResponse(IkeCodeResponseStatus status, Exception ex)
+            : this(status.ToString(), ex)
+        {
         }
 
         public IkeCodeApiResponse(string status, TResult content)
@@ -25,33 +32,9 @@ namespace IkeCode.Api.Core
             Content = content;
         }
 
-        public IkeCodeApiResponse(string status, string message, TResult content)
-            : this(status, message)
-        {
-            Content = content;
-        }
-
-        public IkeCodeApiResponse(IkeCodeResponseStatus status)
-        {
-            Status = status.ToString();
-        }
-
-        public IkeCodeApiResponse(IkeCodeResponseStatus status, string message)
-            : this(status)
-        {
-            Message = message;
-        }
-
         public IkeCodeApiResponse(IkeCodeResponseStatus status, TResult content)
-            : this(status)
+            : this(status.ToString(), content)
         {
-            Content = content;
-        }
-
-        public IkeCodeApiResponse(IkeCodeResponseStatus status, string message, TResult content)
-            : this(status, message)
-        {
-            Content = content;
         }
     }
 }

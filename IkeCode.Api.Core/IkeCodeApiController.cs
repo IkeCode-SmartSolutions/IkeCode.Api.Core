@@ -15,7 +15,7 @@
             }
             catch (Exception ex)
             {
-                return new IkeCodeApiResponse<TResponse>(IkeCodeResponseStatus.Error, ex.Message);
+                return new IkeCodeApiResponse<TResponse>(IkeCodeResponseStatus.Error, ex);
             }
         }
 
@@ -28,7 +28,7 @@
             }
             catch (Exception ex)
             {
-                return new IkeCodeApiResponse<TResponse>(IkeCodeResponseStatus.Error, ex.Message);
+                return new IkeCodeApiResponse<TResponse>(IkeCodeResponseStatus.Error, ex);
             }
         }
     }
